@@ -256,6 +256,51 @@ public class OrderAndChaos extends BoardGame {
         }
 
         if (!hasWinner) {
+            // Check fifth diagonal (5,4), (4,3), (3,2), (2,1), (1,0)
+            for (int i = numberOfSquaresPerSide; i > 0; i--) {
+                if (board[i][i - 1].equals(pieceX)) {
+                    countX++;
+                } else if (board[i][i - 1].equals(pieceO)) {
+                    countO++;
+                }
+            }
+
+            if (countX == numberOfSquaresPerSide || countO == numberOfSquaresPerSide) {
+                players.setPlayerScores(playerOrder, "win");
+                players.setPlayerScores(playerChaos, "lose");
+
+                hasWinner = true;
+            }
+
+            countX = countO = 0;
+        }
+
+        if (!hasWinner) {
+            // Check sixth diagonal (5,1), (4,2), (3,3), (2,4), (1,5)
+            int i = 5, j = 1;
+
+            while(i != 0 && j != 6) {
+                if (board[i][j].equals(pieceX)) {
+                    countX++;
+                } else if (board[i][j].equals(pieceO)) {
+                    countO++;
+                }
+
+                i--;
+                j++;
+            }
+
+            if (countX == numberOfSquaresPerSide || countO == numberOfSquaresPerSide) {
+                players.setPlayerScores(playerOrder, "win");
+                players.setPlayerScores(playerChaos, "lose");
+
+                hasWinner = true;
+            }
+
+            countX = countO = 0;
+        }
+
+        if (!hasWinner) {
             int numSquaresFilled = 0;
             for (int i = 0; i < numberOfSquaresPerSide; i++) {
                 for (int j = 0; j < numberOfSquaresPerSide; j++) {
