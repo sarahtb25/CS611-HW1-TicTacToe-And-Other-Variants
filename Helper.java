@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+// This class helps to get the user inputs, and handles the turn-taking for each game
 public class Helper {
     Players players = new Players();
     Scanner scan = new Scanner(System.in);
@@ -13,6 +14,7 @@ public class Helper {
     }
 
     // Checks if a user input is an integer
+    // Obtained from https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/
     public static boolean isNumber(String str) {
         try {
             int num = Integer.parseInt(str);
@@ -156,7 +158,7 @@ public class Helper {
         }
     }
 
-    // Handles the logic for alternating players and getting user inputs the respective games
+    // Handles the logic for alternating players and getting user inputs for the respective games
     public void playGame(int gameIndex, List<Integer> numSquaresPerSide, int numTeams, int numPlayersPerTeam) {
         List<String> playerNames = players.getAllPlayerNames();
         List<String> gamePiecesAvailable;
@@ -173,7 +175,7 @@ public class Helper {
                 playerIndex = 0;
             }
 
-            // get the players involved (1 from each team/ID e.g. X and O, Order and Chaos)
+            // Get the players involved (1 from each team/ID e.g. X and O, Order and Chaos)
             for (int i = 0; i < numTeams; i++) {
                 playersInvolved.add(playerNames.get(playerIndex + i * numPlayersPerTeam));
             }
@@ -193,7 +195,7 @@ public class Helper {
 
                 System.out.println(message);
 
-                // get who starts first: X or O
+                // Get who starts first: X or O
                 String startingPlayerId = scan.next().trim();
 
                 while(!teams.contains(startingPlayerId)) {
@@ -211,7 +213,7 @@ public class Helper {
                 T3.printBoard();
 
                 do {
-                    // get the game piece of the player in this turn
+                    // Get the game piece of the player in this turn
                     String playerGamePiece = players.getPlayerId(playersInvolved.get(playerTurn));
                     System.out.println(playersInvolved.get(playerTurn) + " (" + playerGamePiece + "), please enter the location e.g. 1,1:");
                     String location = scan.next().trim();
@@ -250,7 +252,7 @@ public class Helper {
                     T3.printBoard();
                     roundFinished = T3.checkGameStatus(playersInvolved);
 
-                    // print the scores of each player if the round is finished
+                    // Print the scores of each player if the round is finished
                     if (roundFinished) {
                         System.out.println();
                         for (int i = 0; i < playersInvolved.size(); i++) {
@@ -259,10 +261,10 @@ public class Helper {
                         System.out.println("");
                     }
 
-                    // get the index of the next player
+                    // Get the index of the next player
                     playerTurn++;
 
-                    // go back to the first player once all the players involved have had their turn
+                    // Go back to the first player once all the players involved have had their turn
                     if (playerTurn == playersInvolved.size()) {
                         playerTurn = 0;
                     }
@@ -307,7 +309,7 @@ public class Helper {
                         } else if (response.equals("LO")) {
                             System.out.println("Location is occupied! Please try again.");
                             location = scan.next().trim();
-                        } else if (response.equals("IBGP")) {
+                        } else if (response.equals("IBGP")) { // Invalid Board Game Piece
                             System.out.println("Invalid board game piece provided! Please enter " + gamePieces + ".");
                             playerGamePiece = scan.next().trim();
                         }
@@ -322,14 +324,16 @@ public class Helper {
 
                         response = OC.setMove(row, column, playerGamePiece);
                     }
+
                     OC.printBoard();
                     roundFinished = OC.checkGameStatus(playersInvolved);
+
                     if (roundFinished) {
                         System.out.println();
                         for (int i = 0; i < playersInvolved.size(); i++) {
                             players.printIndividualScoreSummary(playersInvolved.get(i));
                         }
-                        System.out.println("");
+                        System.out.println();
                     }
 
                     playerTurn++;
@@ -343,7 +347,7 @@ public class Helper {
 
 
             userResponse = endGame();
-            // get the next index of players in a team if the players are in teams
+            // Get the next index of players in a team if the players are in teams
             playerIndex++;
         }
 
@@ -352,6 +356,7 @@ public class Helper {
         System.exit(0);
     }
 
+    // Checks if the player would like to continue playing the game or not
     public String endGame() {
         System.out.println("Would you like to play another round? Enter Y or y to continue, N or n to end.");
 
@@ -365,6 +370,7 @@ public class Helper {
         return userResponse;
     }
 
+    // Prints the summary of scores if the player chooses not to continue playing
     public void printScoreSummary(int gameIndex) {
         System.out.println("\nScore Summary: ");
         List<String> teams = new ArrayList<>();

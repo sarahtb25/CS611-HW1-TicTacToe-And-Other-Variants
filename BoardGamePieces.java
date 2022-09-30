@@ -1,5 +1,6 @@
 import java.util.List;
 
+// This class contains the details of the possible board game pieces available for a game
 public class BoardGamePieces {
     List<String> boardGamePieces;
 

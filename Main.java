@@ -1,6 +1,6 @@
 import java.util.List;
-import java.util.Scanner;
 
+// This class is the starting point
 public class Main {
     public static void main(String[] args) {
         String[] games = {"Tic Tac Toe", "Order And Chaos"};

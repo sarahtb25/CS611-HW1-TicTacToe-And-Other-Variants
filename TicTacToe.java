@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
+// This class handles the logic for Tic Tac Toe
 public class TicTacToe extends BoardGame {
     private final int numDimension = 1;
     private final int minDimension = 3;
@@ -15,6 +16,7 @@ public class TicTacToe extends BoardGame {
     }
 
     public TicTacToe(List<Integer> numSquaresPerSide, List<String> playerNames, Players players) {
+        // X and O represents the available board game pieces
         super(numSquaresPerSide, playerNames, players, Arrays.asList("X", "O"));
     }
 

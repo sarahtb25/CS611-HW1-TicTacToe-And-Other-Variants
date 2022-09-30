@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// This class models a board
 public class Board {
     private List<Integer> numSquaresPerSide = new ArrayList<>();
     private String[][] board;

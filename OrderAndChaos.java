@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
+// This class handles the logic for Order And Chaos
 public class OrderAndChaos extends BoardGame {
     private final int numSquaresPerSide = 6;
     private final int numDimension = 0;
@@ -14,6 +15,7 @@ public class OrderAndChaos extends BoardGame {
     }
 
     public OrderAndChaos(List<String> playerNames, Players players) {
+        // X and O represents the available board game pieces
         super(Arrays.asList(6), playerNames, players, Arrays.asList("X", "O"));
     }
 

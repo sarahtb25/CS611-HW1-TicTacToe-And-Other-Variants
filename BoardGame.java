@@ -1,11 +1,13 @@
 import java.util.List;
 
+// This class models a board game
 public abstract class BoardGame extends Game {
     protected Board board;
 
     public BoardGame() {
         super();
     }
+
     public BoardGame(List<Integer> numSquaresPerSide, List<String> playerNames, Players players, List<String> gamePiecesAvailable) {
         super(playerNames, players);
         board = new Board(numSquaresPerSide, gamePiecesAvailable);
